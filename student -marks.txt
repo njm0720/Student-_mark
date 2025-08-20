@@ -1,0 +1,72 @@
+#include <stdio.h>
+
+// Function to input marks
+void inputMarks(int marks[], int n) {
+    for (int i = 0; i < n; i++) {
+        printf("Enter mark for student %d: ", i + 1);
+        scanf("%d", &marks[i]);
+    }
+}
+
+// Function to calculate average
+float calculateAverage(int marks[], int n) {
+    int sum = 0;
+    for (int i = 0; i < n; i++) {
+        sum += marks[i];
+    }
+    return (float)sum / n;
+}
+
+// Function to find highest mark
+int findHighest(int marks[], int n) {
+    int highest = marks[0];
+    for (int i = 1; i < n; i++) {
+        if (marks[i] > highest) {
+            highest = marks[i];
+        }
+    }
+    return highest;
+}
+
+// Function to find lowest mark
+int findLowest(int marks[], int n) {
+    int lowest = marks[0];
+    for (int i = 1; i < n; i++) {
+        if (marks[i] < lowest) {
+            lowest = marks[i];
+        }
+    }
+    return lowest;
+}
+
+int main() {
+    int n, repeat;
+
+    do {
+        printf("Enter number of students: ");
+        scanf("%d", &n);
+
+        int marks[n];
+
+        // Input marks
+        inputMarks(marks, n);
+
+        // Display marks
+        printf("\nMarks entered: ");
+        for (int i = 0; i < n; i++) {
+            printf("%d ", marks[i]);
+        }
+
+        // Calculate and display results
+        printf("\nAverage mark: %.2f", calculateAverage(marks, n));
+        printf("\nHighest mark: %d", findHighest(marks, n));
+        printf("\nLowest mark: %d\n", findLowest(marks, n));
+
+        // Ask if teacher wants to repeat
+        printf("\nDo you want to enter marks for another class? (1 = Yes, 0 = No): ");
+        scanf("%d", &repeat);
+
+    } while (repeat == 1);
+
+    return 0;
+}
